@@ -2,9 +2,9 @@ name: "CI (Integração Continua): Primeira Action"
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: [opened, synchronize]
 
 jobs:
   exemplo:
@@ -15,4 +15,3 @@ jobs:
 
       - name: Run a one-line script
         run: echo eaemundo
-
