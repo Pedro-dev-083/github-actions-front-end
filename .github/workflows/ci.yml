@@ -1,0 +1,15 @@
+name: "CI (Integração Continua): Main Workflow"
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch  
+  pull_request:
+    branches: [opened, synchronize]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run linter
+        run: yarn lint
