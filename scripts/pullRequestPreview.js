@@ -31,7 +31,10 @@ console.log("GITHUB_PR_NUMBER", GITHUB_PR_NUMBER);
 fetch(
   `https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${GITHUB_PR_NUMBER}/comments`,
   {
-    headers: defaultHeaders,
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      "Content-Type": "application/json",
+    },
     method: "POST",
     body: JSON.stringify({
       body: GH_COMMENT,
