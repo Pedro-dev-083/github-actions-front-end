@@ -40,6 +40,7 @@ fetch(
   },
 )
   .then((response) => {
+    console.log(response);
     if (response.ok) {
       console.log("Comentário adicionado com sucesso ao pull request.");
     } else {
