@@ -10,6 +10,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      
+      - name: Run Instalation
+        run: yarn install
+      
       - name: Run linter
         run: yarn lint
