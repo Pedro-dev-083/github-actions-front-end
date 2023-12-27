@@ -11,10 +11,6 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   linter:
     runs-on: ubuntu-latest
@@ -37,14 +33,6 @@ jobs:
         run: yarn install
       
       - name: Run Preview Deployment
-        run: |
-          # Execute seu script e armazene o resultado em uma variável
-          resultado=$(node ./scripts/pullRequestPreview)
-
-          # Adicione o resultado como um comentário no PR
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-               -H "Content-Type: application/json" \
-               -d "{\"body\": \"Resultado do script: $resultado\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments"
+        run: yarn deploy:preview
 
 
