@@ -11,6 +11,10 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   linter:
     runs-on: ubuntu-latest
@@ -29,9 +33,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: pega o token
-        run: echo "$GITHUB_TOKEN"
-      
       - name: Run Instalation
         run: yarn install
       
