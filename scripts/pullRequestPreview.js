@@ -36,7 +36,7 @@ fetch(
       Authorization: `token ${GITHUB_TOKEN}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ body: commentBody }),
+    body: JSON.stringify({ body: GH_COMMENT }),
   },
 )
   .then((response) => {
