@@ -28,6 +28,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: pega o token
+        run: echo "$GITHUB_TOKEN"
       
       - name: Run Instalation
         run: yarn install
@@ -35,5 +38,4 @@ jobs:
       - name: Run Preview Deployment
         run: yarn deploy:preview
 
-      - name: pega o token
-        run: echo "$GITHUB_TOKEN"
+
