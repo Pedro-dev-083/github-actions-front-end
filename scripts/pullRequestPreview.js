@@ -31,24 +31,19 @@ console.log("GITHUB_PR_NUMBER", GITHUB_PR_NUMBER);
 fetch(
   `https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${GITHUB_PR_NUMBER}/comments`,
   {
+    method: "POST",
     headers: {
       Authorization: `token ${GITHUB_TOKEN}`,
       "Content-Type": "application/json",
     },
-    method: "POST",
-    body: JSON.stringify({
-      body: GH_COMMENT,
-    }),
+    body: JSON.stringify({ body: commentBody }),
   },
 )
   .then((response) => {
-    if (response.ok) return response.json();
-    throw new Error(response.statusText);
+    if (response.ok) {
+      console.log("Comentário adicionado com sucesso ao pull request.");
+    } else {
+      console.error("Falha ao adicionar comentário ao pull request.");
+    }
   })
-  .catch((err) => {
-    console.log("[COMMENT_ON_GITHUB: ERROR]");
-    throw new Error(err);
-  })
-  .finally(() => {
-    console.log("[COMMENT_ON_GITHUB: END]");
-  });
+  .catch((error) => console.error("Erro:", error));
