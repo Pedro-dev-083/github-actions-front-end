@@ -15,8 +15,9 @@
     "build": "rm -rf build && next build && mv ./out ./build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "yarn build && npx vercel ./build --confirm --no-clipboard --token=$VERCEL_TOKEN",
-    "deploy:prod": "yarn deploy --prod",
+    "lint:fix": "next lint --fix",
+    "deploy:prod": "yarn deploy:staging --prod",
+    "deploy:staging": "yarn build && vercel ./build --confirm --no-clipboard --token=$VERCEL_TOKEN",
     "deploy:preview": "node ./scripts/pullRequestPreview"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
-    "prettier": "^3.1.1"
+    "prettier": "^3.1.1",
+    "vercel": "^25.0.0"
   }
 }
