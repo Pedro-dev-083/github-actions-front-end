@@ -1,5 +1,6 @@
 {
   "name": "github-actions-front-end",
+  "type": "module",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Pedro-dev-083 <pedroazevedo83@hotmail.com>",
@@ -13,13 +14,22 @@
     "dev": "next dev",
     "build": "rm -rf build && next build && mv ./out ./build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "deploy:prod": "yarn deploy:staging --prod",
+    "deploy:staging": "yarn build && vercel ./build --confirm --no-clipboard --token=$VERCEL_TOKEN",
+    "deploy:preview": "node ./scripts/pullRequestPreview",
+    "test:e2e:open": "cypress open",
+    "test:e2e": "cypress run --config-file=cypress.config.js"
   },
   "devDependencies": {
+    "cypress": "^13.6.2",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
-    "prettier": "^3.1.1"
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.1.1",
+    "vercel": "^25.0.0"
   }
 }
